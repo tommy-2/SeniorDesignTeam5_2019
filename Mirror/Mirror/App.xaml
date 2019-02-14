@@ -1,0 +1,21 @@
+﻿<Application
+    x:Class="Mirror.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mirror"
+    RequestedTheme="Dark">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+
+                    <FontFamily x:Key="ContentControlThemeFontFamily">ms-appx:/Assets/PoiretOne-Regular.ttf#Poiret One</FontFamily>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+                    </Style>
+
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,28 @@
+﻿<UserControl
+    x:Class="Mirror.SystemClock"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mirror"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded">
+    <UserControl.Resources>
+        <Storyboard x:Name="_fadeIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_content">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <StackPanel x:Name="_content">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding HoursAndMinutes}" VerticalAlignment="Top" FontSize="90" />
+            <TextBlock Text="{Binding Seconds}" VerticalAlignment="Top" FontSize="28" Padding="6,15" Opacity="0.5" />
+        </StackPanel>
+        <TextBlock VerticalAlignment="Top" Text="{Binding Date}"  FontSize="21" />
+    </StackPanel>
+</UserControl>
