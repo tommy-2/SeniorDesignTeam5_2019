@@ -124,10 +124,10 @@
     <value />
   </data>
   <data name="City" xml:space="preserve">
-    <value>Pewaukee</value>
+    <value>Manhattan, US</value>
   </data>
   <data name="OpenWeatherApiKey" xml:space="preserve">
-    <value />
+    <value>a6fa90be23ab95c56b119a0bd48bb276</value>
   </data>
   <data name="WeatherUom" xml:space="preserve">
     <value>imperial</value>
