@@ -109,8 +109,6 @@
   <ItemGroup>
     <Compile Include="DebugHelper.cs" />
     <Compile Include="Do.cs" />
-    <Compile Include="Interfaces\IAudioCommandListener.cs" />
-    <Compile Include="Interfaces\IVolumeCommandListener.cs" />
     <Compile Include="Logging\LoggerFactory.cs" />
     <Compile Include="OSVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,7 +116,9 @@
     <Compile Include="Threading\TaskCache`1.cs" />
     <EmbeddedResource Include="Properties\Mirror.Core.rd.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

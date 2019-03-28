@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Mirror.IO;
+//using Mirror.IO;
 using Mirror.Networking;
-using Mirror.Speech;
 using System;
 
 namespace Mirror.Core
@@ -16,12 +15,8 @@ namespace Mirror.Core
         {
             var collection = new ServiceCollection();
 
-            collection.AddSingleton<IAudioService, AudioService>();
-            collection.AddSingleton<IBluetoothService, BluetoothService>();
-            collection.AddSingleton<IPhotoService, PhotoService>();
             collection.AddSingleton<IWeatherService, WeatherService>();
             collection.AddSingleton<ICalendarService, CalendarService>();
-            collection.AddSingleton<ISpeechEngine, SpeechEngine>();
 
             return collection.BuildServiceProvider();
         }

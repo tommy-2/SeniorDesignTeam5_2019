@@ -5,7 +5,6 @@ using Mirror.Controls;
 using Mirror.Core;
 using Mirror.Extensions;
 using Mirror.Networking;
-using Mirror.Speech;
 using Mirror.ViewModels;
 using Windows.ApplicationModel;
 using Windows.UI.ViewManagement;
@@ -16,24 +15,15 @@ using static Mirror.Calendar.Calendar;
 
 namespace Mirror
 {
-    public sealed partial class EventCalendar : UserControl, IAsyncLoader, IContextSynthesizer
+    public sealed partial class EventCalendar : UserControl, IAsyncLoader
     {
         DispatcherTimer _timer;
         ICalendarService _calendarService;
-
-        string UnableToGenerateSpeechMessage { get; } =
-            "I'm sorry, but I'm having difficulty retrieving your calendar events right now. Please, try again later.";
 
         public EventCalendar()
         {
             InitializeComponent();
         }
-
-        Task<string> IContextSynthesizer.GetContextualMessageAsync(DateTime? dateContext)
-            => SpeechControlHelper.GetContextualMessageAsync(this,
-                                                             DataContext,
-                                                             dateContext,
-                                                             UnableToGenerateSpeechMessage);
 
         void OnLoaded(object sender, RoutedEventArgs args)
         {

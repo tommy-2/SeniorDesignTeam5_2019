@@ -1,6 +1,6 @@
 ﻿using MetroLog;
 using Mirror.Core;
-using Mirror.IO;
+//using Mirror.IO;
 using Mirror.Logging;
 using System;
 using Windows.ApplicationModel;
@@ -35,7 +35,6 @@ namespace Mirror
 
         async void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            await Services.Get<IPhotoService>()?.CleanupAsync();
 
             var logger = LoggerFactory.GetAsynchronous<App>();
             await logger?.FatalAsync(e.Message, e.Exception);

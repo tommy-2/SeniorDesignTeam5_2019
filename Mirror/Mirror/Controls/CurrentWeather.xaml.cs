@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Mirror.Controls;
 using Mirror.Core;
 using Mirror.Networking;
-using Mirror.Speech;
 using Mirror.ViewModels;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
@@ -12,13 +11,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace Mirror
 {
-    public sealed partial class CurrentWeather : UserControl, IAsyncLoader, IContextSynthesizer
+    public sealed partial class CurrentWeather : UserControl, IAsyncLoader
     {
         DispatcherTimer _timer;
         IWeatherService _weatherService;
 
-        string UnableToGenerateSpeechMessage { get; } = 
-            "I'm sorry, but I'm having difficulity retrieving the current weather right now. Please, try again later.";
 
         public CurrentWeather()
         {
@@ -78,10 +75,6 @@ namespace Mirror
             }
         }
 
-        Task<string> IContextSynthesizer.GetContextualMessageAsync(DateTime? dateContext) 
-            => SpeechControlHelper.GetContextualMessageAsync(this, 
-                                                             DataContext, 
-                                                             dateContext, 
-                                                             UnableToGenerateSpeechMessage);
+
     }
 }

@@ -13,7 +13,6 @@ namespace Mirror.Core
 
         public static Settings Instance { get; } = _settings.Value;
 
-        public string AzureEmotionApiKey { get; private set; }
         public string City { get; private set; }
         public string OpenWeatherApiKey { get; private set; }
         public string WeatherUom { get; private set; }
@@ -23,7 +22,6 @@ namespace Mirror.Core
         Settings()
         {
             var resourceLoader = ResourceLoader.GetForViewIndependentUse(Configuration);
-            AzureEmotionApiKey = resourceLoader.GetString(nameof(AzureEmotionApiKey));
             City = resourceLoader.GetString(nameof(City));
             OpenWeatherApiKey = resourceLoader.GetString(nameof(OpenWeatherApiKey));
             WeatherUom = resourceLoader.GetString(nameof(WeatherUom));
