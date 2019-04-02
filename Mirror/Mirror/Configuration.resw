@@ -121,7 +121,7 @@
     <value />
   </data>
   <data name="Calendars" xml:space="preserve">
-    <value />
+    <value> [{"Url":"https://calendar.google.com/calendar/ical/n8gko7erth1eijp4t6f543aua4%40group.calendar.google.com/public/basic.ics", "Username":"", "Password":"", "IsUsingCredentials":false}]</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Manhattan, US</value>
