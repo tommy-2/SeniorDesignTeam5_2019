@@ -11,12 +11,13 @@
     <AssemblyName>Mirror</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Mirror_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -130,9 +131,6 @@
     <Content Include="Assets\PoiretOne-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PRIResource Include="SpeechResources.resw">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </PRIResource>
     <PRIResource Include="Configuration.resw" />
     <Content Include="Assets\emoticons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -140,14 +138,10 @@
     <Content Include="Assets\mediacons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AudioPlayer.xaml.cs">
-      <DependentUpon>AudioPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Calendar\Calendar.cs" />
     <Compile Include="Calendar\Content.cs" />
@@ -158,32 +152,24 @@
     <Compile Include="Calendar\vEvent.cs" />
     <Compile Include="Calendar\Parser.cs" />
     <Compile Include="Controls\IAsyncLoader.cs" />
-    <Compile Include="Controls\SpeechControlHelper.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Core\Services.cs" />
-    <Compile Include="Emotion\Emoticons.cs" />
     <Compile Include="Core\Settings.cs" />
     <Compile Include="Core\Weather.cs" />
     <Compile Include="Controls\CurrentWeather.xaml.cs">
       <DependentUpon>CurrentWeather.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Emotion\Emotions.cs" />
-    <Compile Include="Emotion\Result.cs" />
     <Compile Include="Controls\EventCalendar.xaml.cs">
       <DependentUpon>EventCalendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ForecastWeather.xaml.cs">
       <DependentUpon>ForecastWeather.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IO\AudioService.cs" />
-    <Compile Include="IO\BluetoothService.cs" />
-    <Compile Include="IO\PhotoService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Current.cs" />
     <Compile Include="Models\Forecast.cs" />
-    <Compile Include="Models\Song.cs" />
     <Compile Include="Networking\ApiClient.cs" />
     <Compile Include="Networking\CalendarService.cs" />
     <Compile Include="Networking\Internet.cs" />
@@ -402,10 +388,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\AudioPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\CurrentWeather.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -428,11 +410,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsIoT, Version=10.0.14393.0">
-      <Name>Windows IoT Extensions for the UWP</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Mirror.Core\Mirror.Core.csproj">
       <Project>{2d83abd7-baab-4922-bc19-fe5cb4e933c3}</Project>
       <Name>Mirror.Core</Name>
@@ -441,10 +418,37 @@
       <Project>{6c2c928e-64fd-4c67-8e70-f968ff6b0d63}</Project>
       <Name>Mirror.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mirror.Speech\Mirror.Speech.csproj">
-      <Project>{98b38efe-0271-4071-afa5-205e7677ffdd}</Project>
-      <Name>Mirror.Speech</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MetroLog">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ProjectOxford.Emotion">
+      <Version>1.0.336</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="TagLib.Portable">
+      <Version>1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="TimeZoneConverter">
+      <Version>1.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsIoT, Version=10.0.16299.0">
+      <Name>Windows IoT Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IO\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
