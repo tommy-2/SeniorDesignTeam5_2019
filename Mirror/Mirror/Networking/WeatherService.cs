@@ -23,7 +23,7 @@ namespace Mirror.Networking
             $"{BaseUrl}weather?q={Instance.City}&cnt=5&appid={Instance.OpenWeatherApiKey}&units={Instance.WeatherUom}&mode=json";
 
         static string ForecastUrl =>
-            $"{BaseUrl}forecast/daily?q={Instance.City}&cnt=7&appid={Instance.OpenWeatherApiKey}&units={Instance.WeatherUom}&mode=json";
+            $"{BaseUrl}forecast/?q={Instance.City}&appid={Instance.OpenWeatherApiKey}&units={Instance.WeatherUom}&mode=json";
 
         Task<Current> IWeatherService.GetCurrentAsync() =>
             OnErrorContinueAsync(() =>
