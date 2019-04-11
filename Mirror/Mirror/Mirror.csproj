@@ -131,6 +131,7 @@
     <Content Include="Assets\PoiretOne-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="quotes.txt" />
     <PRIResource Include="Configuration.resw" />
     <Content Include="Assets\emoticons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -152,6 +153,9 @@
     <Compile Include="Calendar\vEvent.cs" />
     <Compile Include="Calendar\Parser.cs" />
     <Compile Include="Controls\IAsyncLoader.cs" />
+    <Compile Include="Controls\Quotes.xaml.cs">
+      <DependentUpon>Quotes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Core\Services.cs" />
     <Compile Include="Core\Settings.cs" />
@@ -184,6 +188,7 @@
     <Compile Include="ViewModels\CalendarViewModel.cs" />
     <Compile Include="ViewModels\ForecastViewModel.cs" />
     <Compile Include="ViewModels\HudViewModel.cs" />
+    <Compile Include="ViewModels\QuotesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -399,6 +404,10 @@
     <Page Include="Controls\ForecastWeather.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Quotes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
