@@ -43,32 +43,8 @@ namespace Mirror.Models
         [JsonProperty("wind")]
         public Wind Wind { get; set; }
 
-        [JsonProperty("temp")]
-        public Temp Temp { get; set; }
-
         [JsonProperty("sys")]
         public Sys Sys { get; set; }
-    }
-
-    public struct Temp
-    {
-        [JsonProperty("day")]
-        public double Day { get; set; }
-
-        [JsonProperty("min")]
-        public double Min { get; set; }
-
-        [JsonProperty("max")]
-        public double Max { get; set; }
-
-        [JsonProperty("night")]
-        public double Night { get; set; }
-
-        [JsonProperty("eve")]
-        public double Eve { get; set; }
-
-        [JsonProperty("morn")]
-        public double Morn { get; set; }
     }
 
     public struct Forecast

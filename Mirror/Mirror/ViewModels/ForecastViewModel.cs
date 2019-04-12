@@ -58,9 +58,9 @@ namespace Mirror.ViewModels
 
         public string Icon => Weather.Icons[_weather.Icon];
 
-        public double Low => _listing.Temp.Min;
+        public double Temp => _listing.Main.Temp;
 
-        public double High => _listing.Temp.Max;
+        public string Time => DateTime.Today.Add(_listing.DateTime.TimeOfDay).ToString("%h:mm tt");
 
         public ForecastDay(DependencyObject dependency, Models.List listing, Models.Weather weather) : base(dependency)
         {
@@ -69,6 +69,6 @@ namespace Mirror.ViewModels
         }
 
         public override string ToFormattedString(DateTime? dateContext) 
-            => $"On {_listing.DateTime:dddd}, the {_listing.DateTime.Day.ToOrdinalString()} expect {Conditions} with a low of {_listing.Temp.Min:#}° and a high of {_listing.Temp.Max:#}°.";
+            => $"On {_listing.DateTime:dddd}, the {_listing.DateTime.Day.ToOrdinalString()} expect {Conditions}";
     }
 }

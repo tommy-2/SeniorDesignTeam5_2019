@@ -6,9 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
-    Loaded="OnLoaded">
+    Loaded="OnLoaded" Height="800" Width="642">
     <UserControl.Resources>
         <local:StringFormatConverter x:Key="StringFormatConverter"/>
         <Storyboard x:Name="_fadeIn">
@@ -18,22 +16,21 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <StackPanel x:Name="_forecastStackPanel" HorizontalAlignment="Right">
-        <Grid>
-            <GridView ItemsSource="{Binding Days}" IsItemClickEnabled="False">
+    <StackPanel x:Name="_forecastStackPanel" HorizontalAlignment="Center">
+        <Grid Width="642" Height="800">
+            <GridView ItemsSource="{Binding Days}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Day}" FontWeight="Bold" Padding="0,0,0,3" HorizontalAlignment="Center" />
-                            <Border BorderBrush="White" BorderThickness="0,2,0,1" Padding="0,6">
-                                <TextBlock FontFamily="ms-appx:/Assets/meteocons.ttf#Meteocons" Text="{Binding Icon}" FontSize="22" HorizontalAlignment="Center" />
+                        <StackPanel Orientation="Vertical" Width="70">
+                            <TextBlock Text="{Binding Day}" FontSize="16" FontWeight="Bold" Padding="0,0,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Time}" FontSize="12" Padding="0,0,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Border BorderBrush="White" BorderThickness="0,1,0,1" Padding="0,3">
+                                <TextBlock FontFamily="ms-appx:/Assets/meteocons.ttf#Meteocons" Text="{Binding Icon}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
-                            <TextBlock Text="{Binding Low, 
+                            <TextBlock Text="{Binding Temp, 
                                               Converter={StaticResource StringFormatConverter}, 
-                                              ConverterParameter='L {0:#}°'}" Padding="0,3,0,0" HorizontalAlignment="Right" />
-                            <TextBlock Text="{Binding High, 
-                                              Converter={StaticResource StringFormatConverter}, 
-                                              ConverterParameter='H {0:#}°'}" HorizontalAlignment="Right" />
+                                              ConverterParameter='\{0:#}°'}" FontSize="16" HorizontalAlignment="Center" />
+                            <Border BorderBrush="White" BorderThickness="0,0,0,3"/>
                         </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>
