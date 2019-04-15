@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Calendars" xml:space="preserve">
-    <value> [{"Url":"https://calendar.google.com/calendar/ical/n8gko7erth1eijp4t6f543aua4%40group.calendar.google.com/public/basic.ics", "Username":"", "Password":"", "IsUsingCredentials":false}]</value>
+    <value> [{"Url":"https://calendar.google.com/calendar/ical/484rg1oai5ihujah2m0s00dlkdfb022h%40import.calendar.google.com/public/basic.ics", "Username":"", "Password":"", "IsUsingCredentials":false}]</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Manhattan, US</value>
