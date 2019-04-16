@@ -56,7 +56,8 @@ namespace Mirror
                                    {
                                        _currentWeather,
                                        _forecastWeather,
-                                       _eventCalendar
+                                       _eventCalendar,
+                                       _eventCalendarLarge
                                    }.Where(loader => loader != null))
             {
                 await loader.LoadAsync();
