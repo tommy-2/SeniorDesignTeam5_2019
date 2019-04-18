@@ -155,6 +155,7 @@
     <Compile Include="Controls\EventCalendarLarge.xaml.cs">
       <DependentUpon>EventCalendarLarge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GestureControl.cs" />
     <Compile Include="Controls\IAsyncLoader.cs" />
     <Compile Include="Controls\Quotes.xaml.cs">
       <DependentUpon>Quotes.xaml</DependentUpon>
@@ -172,6 +173,8 @@
     <Compile Include="Controls\ForecastWeather.xaml.cs">
       <DependentUpon>ForecastWeather.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IO\SerialObject.cs" />
+    <Compile Include="IO\SerialService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -463,9 +466,7 @@
       <Name>Windows IoT Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IO\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
