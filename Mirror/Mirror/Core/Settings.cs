@@ -16,6 +16,7 @@ namespace Mirror.Core
         public string City { get; private set; }
         public string OpenWeatherApiKey { get; private set; }
         public string WeatherUom { get; private set; }
+        public string TrafficAPIKey { get; private set; }
 
         public List<CalendarConfig> Calendars { get; private set; }
 
@@ -26,6 +27,7 @@ namespace Mirror.Core
             OpenWeatherApiKey = resourceLoader.GetString(nameof(OpenWeatherApiKey));
             WeatherUom = resourceLoader.GetString(nameof(WeatherUom));
             Calendars = resourceLoader.GetString(nameof(Calendars)).Deserialize<List<CalendarConfig>>();
+            TrafficAPIKey = resourceLoader.GetString(nameof(TrafficAPIKey));
         }
     }
     

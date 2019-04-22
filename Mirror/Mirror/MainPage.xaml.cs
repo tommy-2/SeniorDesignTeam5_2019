@@ -23,7 +23,10 @@ using Windows.Media.MediaProperties;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.Devices.Geolocation;
+using static Mirror.Core.Settings;
 using RawEmotion = Microsoft.ProjectOxford.Emotion.Contract.Emotion;
+using Windows.UI.Xaml.Controls.Maps;
 
 #endregion
 
@@ -50,6 +53,8 @@ namespace Mirror
         async void OnLoaded(object sender, RoutedEventArgs e)
         {
             _messageLabel.Text = GetTimeOfDayGreeting();
+
+            setUpMap();
 
             // I want these to be serialized.
             foreach (var loader in new IAsyncLoader[]
@@ -79,5 +84,37 @@ namespace Mirror
             //none
         }
 
+        async void setUpMap()
+        {
+            _trafficMap.MapServiceToken = Instance.TrafficAPIKey;
+
+            // Set your current location.
+            var accessStatus = await Geolocator.RequestAccessAsync();
+            switch (accessStatus)
+            {
+                case GeolocationAccessStatus.Allowed:
+
+                    // Get the current location.
+                    Geolocator geolocator = new Geolocator();
+                    Geoposition pos = await geolocator.GetGeopositionAsync();
+                    Geopoint myLocation = pos.Coordinate.Point;
+
+                    // Set the map location.
+                    _trafficMap.Center = myLocation;
+                    _trafficMap.LandmarksVisible = true;
+                    break;
+
+                case GeolocationAccessStatus.Denied:
+                    // Handle the case  if access to location is denied.
+                    break;
+
+                case GeolocationAccessStatus.Unspecified:
+                    // Handle the case if  an unspecified error occurs.
+                    break;
+            }
+
+            _trafficMap.ZoomLevel = 13;
+            _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
+        }
     }
 }

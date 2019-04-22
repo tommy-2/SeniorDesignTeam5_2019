@@ -126,6 +126,9 @@
   <data name="OpenWeatherApiKey" xml:space="preserve">
     <value>a6fa90be23ab95c56b119a0bd48bb276</value>
   </data>
+  <data name="TrafficAPIKey" xml:space="preserve">
+    <value />
+  </data>
   <data name="WeatherUom" xml:space="preserve">
     <value>imperial</value>
   </data>

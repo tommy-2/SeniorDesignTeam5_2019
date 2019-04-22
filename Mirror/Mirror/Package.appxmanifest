@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
-  <Identity Name="2c9b933a-1653-4d2f-92b9-9bfc008785fb" Publisher="CN=david.pine" Version="1.0.0.0" />
+  <Identity Name="2c9b933a-1653-4d2f-92b9-9bfc008785fb" Publisher="CN=tommy" Version="1.1.0.0" />
   <mp:PhoneIdentity PhoneProductId="2c9b933a-1653-4d2f-92b9-9bfc008785fb" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Mirror</DisplayName>
-    <PublisherDisplayName>david.pine</PublisherDisplayName>
+    <PublisherDisplayName>ECE591</PublisherDisplayName>
     <Logo>Assets\NewStoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -20,7 +20,7 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
         <uap:InitialRotationPreference>
-          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
         </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
