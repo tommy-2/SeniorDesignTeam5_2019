@@ -44,17 +44,27 @@ namespace Mirror
 
         #endregion
 
+        //gesture variable fields
+        GestureControl.GestureOutputFunctionDelegate gestureDel;
+        GestureControl gc;
+
         public MainPage()
         {
             InitializeComponent();
             DataContext = new HudViewModel(this);
+
+            //setup gesture control variable fields
+            gestureDel = gestureHandler;
+            gc = new GestureControl(gestureDel);
+            //start gesture control
+            gc.ConnectAndListen_Arduino();
         }
 
         async void OnLoaded(object sender, RoutedEventArgs e)
         {
             _messageLabel.Text = GetTimeOfDayGreeting();
 
-            setUpMap();
+            //setUpMap();
 
             // I want these to be serialized.
             foreach (var loader in new IAsyncLoader[]
@@ -115,6 +125,40 @@ namespace Mirror
 
             _trafficMap.ZoomLevel = 13;
             _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
+        }
+
+        //this function is set up to run whenever a gesture is received from the gesture sensors
+        //more specifically it runs every time a serial message is received form the arduino
+        //implements a state machine that responds to input gestures
+        private void gestureHandler(GestureControl.GestureType gesture)
+        {
+            switch (gesture)
+            {
+                case GestureControl.GestureType.ZX_Right:
+                    _eventCarouselControl.ScrollRight();
+                    break;
+                case GestureControl.GestureType.ZX_Left:
+                    _eventCarouselControl.ScrollLeft();
+                    break;
+                case GestureControl.GestureType.ZX_Up:
+                    break;
+                case GestureControl.GestureType.DFR_Up:
+                    break;
+                case GestureControl.GestureType.DFR_Down:
+                    break;
+                case GestureControl.GestureType.DFR_Left:
+                    break;
+                case GestureControl.GestureType.DFR_Right:
+                    break;
+                case GestureControl.GestureType.DFR_CW:
+                    break;
+                case GestureControl.GestureType.DFR_CCW:
+                    break;
+                case GestureControl.GestureType.No_Gesture:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -23,6 +23,7 @@
         <Canvas x:Name="_visualizationCanvas" Margin="1" FlowDirection="RightToLeft" />
         <local:EventCalendar x:Name="_eventCalendar" HorizontalAlignment="Left" Margin="30,190,0,60" Padding="0,18,0,0" />
         <local:EventCalendarLarge x:Name="_eventCalendarLarge" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50" Opacity="0"/>
+        <local:CarouselControl x:Name="_eventCarouselControl" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="150" Width="1000" Margin="20" Opacity="1" />
         <TextBlock x:Name="_hypothesis" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,120,60" TextAlignment="Right" FontSize="22" />
         <TextBlock x:Name="_osVersion" Text="{Binding OSVersion, Converter={StaticResource StringFormatConverter}, ConverterParameter=Windows\, \{0\}}" 
                    VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,112" TextAlignment="Right" FontSize="22" />
