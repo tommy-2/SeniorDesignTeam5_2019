@@ -53,18 +53,13 @@ namespace Mirror
             InitializeComponent();
             DataContext = new HudViewModel(this);
 
-            //setup gesture control variable fields
-            gestureDel = gestureHandler;
-            gc = new GestureControl(gestureDel);
-            //start gesture control
-            gc.ConnectAndListen_Arduino();
         }
 
         async void OnLoaded(object sender, RoutedEventArgs e)
         {
             _messageLabel.Text = GetTimeOfDayGreeting();
 
-            //setUpMap();
+            setUpMap();
 
             // I want these to be serialized.
             foreach (var loader in new IAsyncLoader[]
@@ -77,6 +72,13 @@ namespace Mirror
             {
                 await loader.LoadAsync();
             }
+
+            //setup gesture control variable fields
+            gestureDel = gestureHandler;
+            gc = new GestureControl(gestureDel);
+            //start gesture control
+            gc.ConnectAndListen_Arduino();
+
         }
 
         private static string GetTimeOfDayGreeting()
@@ -109,9 +111,18 @@ namespace Mirror
                     Geoposition pos = await geolocator.GetGeopositionAsync();
                     Geopoint myLocation = pos.Coordinate.Point;
 
+                    //K-State Campus Location
+                    BasicGeoposition bgp = new BasicGeoposition();
+                    bgp.Latitude = 39.1930;
+                    bgp.Longitude = -96.5740;
+                    Geopoint AndersonHall = new Geopoint(bgp);
+
+
                     // Set the map location.
-                    _trafficMap.Center = myLocation;
+                    _trafficMap.Center = AndersonHall;
                     _trafficMap.LandmarksVisible = true;
+                    _trafficMap.Height = 450;
+                    _trafficMap.Width = 350;
                     break;
 
                 case GeolocationAccessStatus.Denied:
@@ -123,7 +134,7 @@ namespace Mirror
                     break;
             }
 
-            _trafficMap.ZoomLevel = 13;
+            _trafficMap.ZoomLevel = 14;
             _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
         }
 

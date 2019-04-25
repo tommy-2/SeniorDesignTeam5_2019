@@ -27,7 +27,14 @@ namespace Mirror.Networking
             var response = await GetRawAsync(url, getClient);
             if (!string.IsNullOrWhiteSpace(response))
             {
-                result = JsonConvert.DeserializeObject<T>(response, Settings);
+                try
+                {
+                    result = JsonConvert.DeserializeObject<T>(response, Settings);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
             return result;
         }
