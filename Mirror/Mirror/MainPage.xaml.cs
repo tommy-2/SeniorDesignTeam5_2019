@@ -87,6 +87,7 @@ namespace Mirror
         async void setUpMap()
         {
             _trafficMap.MapServiceToken = Instance.TrafficAPIKey;
+            _trafficMapBig.MapServiceToken = Instance.TrafficAPIKey;
 
             // Set your current location.
             var accessStatus = await Geolocator.RequestAccessAsync();
@@ -102,6 +103,8 @@ namespace Mirror
                     // Set the map location.
                     _trafficMap.Center = myLocation;
                     _trafficMap.LandmarksVisible = true;
+                    _trafficMapBig.Center = myLocation;
+                    _trafficMapBig.LandmarksVisible = true;
                     break;
 
                 case GeolocationAccessStatus.Denied:
@@ -113,8 +116,10 @@ namespace Mirror
                     break;
             }
 
-            _trafficMap.ZoomLevel = 13;
+            _trafficMap.ZoomLevel = 13.55;
+            _trafficMapBig.ZoomLevel = 14.65;
             _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
+            _trafficMapBig.StyleSheet = MapStyleSheet.RoadDark();
         }
     }
 }

@@ -35,5 +35,6 @@
             </Image.Source>
         </Image>
         <Custom:MapControl x:Name="_trafficMap" HorizontalAlignment="Right" VerticalAlignment="Center" Height="258" Margin="0,250,10,0" Width="300" TrafficFlowVisible="True"/>
+        <Custom:MapControl x:Name="_trafficMapBig" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="318,75,318,0" Height="800" Width="642" Opacity="0" />
     </Grid>
 </Page>
