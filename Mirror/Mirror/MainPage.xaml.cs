@@ -47,12 +47,23 @@ namespace Mirror
 
         #endregion
 
+<<<<<<< HEAD
         public ObservableCollection<Tweet> Tweets { get; set; }
+=======
+        //gesture variable fields
+        GestureControl.GestureOutputFunctionDelegate gestureDel;
+        GestureControl gc;
+
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
         public MainPage()
         {
             InitializeComponent();
             DataContext = new HudViewModel(this);
+<<<<<<< HEAD
             Tweets = new ObservableCollection<Tweet>();
+=======
+
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
         }
 
         async void OnLoaded(object sender, RoutedEventArgs e)
@@ -72,7 +83,17 @@ namespace Mirror
             {
                 await loader.LoadAsync();
             }
+<<<<<<< HEAD
             await DoSearchAsync("@KState", 100);
+=======
+
+            //setup gesture control variable fields
+            gestureDel = gestureHandler;
+            gc = new GestureControl(gestureDel);
+            //start gesture control
+            gc.ConnectAndListen_Arduino();
+
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
         }
 
         private static string GetTimeOfDayGreeting()
@@ -108,11 +129,23 @@ namespace Mirror
                     Geoposition pos = await geolocator.GetGeopositionAsync();
                     Geopoint myLocation = pos.Coordinate.Point;
 
+                    //K-State Campus Location
+                    BasicGeoposition bgp = new BasicGeoposition();
+                    bgp.Latitude = 39.1930;
+                    bgp.Longitude = -96.5740;
+                    Geopoint AndersonHall = new Geopoint(bgp);
+
+
                     // Set the map location.
-                    _trafficMap.Center = myLocation;
+                    _trafficMap.Center = AndersonHall;
                     _trafficMap.LandmarksVisible = true;
+<<<<<<< HEAD
                     _trafficMapBig.Center = myLocation;
                     _trafficMapBig.LandmarksVisible = true;
+=======
+                    _trafficMap.Height = 450;
+                    _trafficMap.Width = 350;
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
                     break;
 
                 case GeolocationAccessStatus.Denied:
@@ -124,9 +157,13 @@ namespace Mirror
                     break;
             }
 
+<<<<<<< HEAD
             _trafficMap.ZoomLevel = 13.55;
             _trafficMapBig.ZoomLevel = 14.65;
             //FIX, System.TypeLoadException: 'Requested Windows Runtime type 'Windows.UI.Xaml.Controls.Maps.MapStyleSheet' is not registered.'
+=======
+            _trafficMap.ZoomLevel = 14;
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
             _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
             _trafficMapBig.StyleSheet = MapStyleSheet.RoadDark();
         }
@@ -320,6 +357,40 @@ namespace Mirror
                 wv.NavigateToString(htmlStyle + htmlStream);
             }
 
+        }
+
+        //this function is set up to run whenever a gesture is received from the gesture sensors
+        //more specifically it runs every time a serial message is received form the arduino
+        //implements a state machine that responds to input gestures
+        private void gestureHandler(GestureControl.GestureType gesture)
+        {
+            switch (gesture)
+            {
+                case GestureControl.GestureType.ZX_Right:
+                    _eventCarouselControl.ScrollRight();
+                    break;
+                case GestureControl.GestureType.ZX_Left:
+                    _eventCarouselControl.ScrollLeft();
+                    break;
+                case GestureControl.GestureType.ZX_Up:
+                    break;
+                case GestureControl.GestureType.DFR_Up:
+                    break;
+                case GestureControl.GestureType.DFR_Down:
+                    break;
+                case GestureControl.GestureType.DFR_Left:
+                    break;
+                case GestureControl.GestureType.DFR_Right:
+                    break;
+                case GestureControl.GestureType.DFR_CW:
+                    break;
+                case GestureControl.GestureType.DFR_CCW:
+                    break;
+                case GestureControl.GestureType.No_Gesture:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

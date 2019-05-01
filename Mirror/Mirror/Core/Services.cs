@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-//using Mirror.IO;
+using Mirror.IO;
 using Mirror.Networking;
 using System;
 
@@ -17,6 +17,7 @@ namespace Mirror.Core
 
             collection.AddSingleton<IWeatherService, WeatherService>();
             collection.AddSingleton<ICalendarService, CalendarService>();
+            collection.AddSingleton<ISerialService, SerialService>();
 
             return collection.BuildServiceProvider();
         }
