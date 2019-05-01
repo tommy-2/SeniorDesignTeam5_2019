@@ -90,6 +90,8 @@ namespace Mirror
             //none
         }
 
+        #region Map
+
         async void setUpMap()
         {
             _trafficMap.MapServiceToken = Instance.TrafficAPIKey;
@@ -124,9 +126,13 @@ namespace Mirror
 
             _trafficMap.ZoomLevel = 13.55;
             _trafficMapBig.ZoomLevel = 14.65;
+            //FIX, System.TypeLoadException: 'Requested Windows Runtime type 'Windows.UI.Xaml.Controls.Maps.MapStyleSheet' is not registered.'
             _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
             _trafficMapBig.StyleSheet = MapStyleSheet.RoadDark();
         }
+        #endregion
+
+        #region Twitter
         private async Task DoSearchAsync(string query, byte count = 25)
         {
             //var response = await GetToken("[Get from twitter App area]", "[Get from twitter App area]");
@@ -327,4 +333,6 @@ namespace Mirror
         public string NameAt { get; set; }
 
     }
+    #endregion
+
 }
