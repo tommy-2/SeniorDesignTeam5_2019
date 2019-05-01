@@ -8,12 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using MetroLog;
-using Microsoft.ProjectOxford.Emotion; //delete
+using Microsoft.ProjectOxford.Emotion;
 using Mirror.Controls;
 using Mirror.Core;
 using Mirror.Extensions;
-//using Mirror.Interfaces; //delete
-//using Mirror.IO; //delete
+//using Mirror.Interfaces;
+//using Mirror.IO;
 using Mirror.Logging;
 using Mirror.Models;
 using Mirror.Threading;
@@ -27,10 +27,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Devices.Geolocation;
 using static Mirror.Core.Settings;
-using RawEmotion = Microsoft.ProjectOxford.Emotion.Contract.Emotion; //delete
+using RawEmotion = Microsoft.ProjectOxford.Emotion.Contract.Emotion;
 using Windows.UI.Xaml.Controls.Maps;
 using System.Text.RegularExpressions;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 
 #endregion
 
@@ -46,155 +45,25 @@ namespace Mirror
 
         ILogger _logger = LoggerFactory.Get<MainPage>();
 
-        
+        #endregion
 
+<<<<<<< HEAD
         public ObservableCollection<Tweet> Tweets { get; set; }
-
+=======
         //gesture variable fields
         GestureControl.GestureOutputFunctionDelegate gestureDel;
         GestureControl gc;
-        #endregion
 
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
         public MainPage()
         {
             InitializeComponent();
             DataContext = new HudViewModel(this);
+<<<<<<< HEAD
             Tweets = new ObservableCollection<Tweet>();
+=======
 
-            gestureDel = gestureHandler;
-            gc = new GestureControl(gestureDel);
-            //start gesture control
-            gc.ConnectAndListen_Arduino();
-        }
-
-        private void gestureHandler(GestureControl.GestureType gesture)
-        {
-            switch (gesture)
-            {
-                case GestureControl.GestureType.ZX_Right:
-                    _eventCarouselControl.ScrollRight();
-                    CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
-                    break;
-                case GestureControl.GestureType.ZX_Left:
-                    _eventCarouselControl.ScrollLeft();
-                    CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
-                    break;
-                case GestureControl.GestureType.ZX_Up:
-                    break;
-                case GestureControl.GestureType.DFR_Up:
-                    break;
-                case GestureControl.GestureType.DFR_Down:
-                    break;
-                case GestureControl.GestureType.DFR_Left:
-                    break;
-                case GestureControl.GestureType.DFR_Right:
-                    break;
-                case GestureControl.GestureType.DFR_CW:
-                    break;
-                case GestureControl.GestureType.DFR_CCW:
-                    break;
-                case GestureControl.GestureType.No_Gesture:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        //TEST
-        private void CenterPageDisplay(int pageCase)
-        {
-            switch (pageCase)
-            {
-                case 0:
-                    //display calendar
-                    fadeIn(_eventCalendarLarge);
-                    fadeOut(_eventCalendar);
-                    fadeOut(_trafficMap);
-                    fadeOut(_forecastWeather);
-                    break;
-                case 1:
-                    //display weather
-                    fadeOut(_eventCalendarLarge);
-                    fadeIn(_eventCalendar);
-                    fadeIn(_trafficMap);
-                    fadeIn(_forecastWeather);
-                    break;
-                case 2:
-                    //display home
-                    _eventCalendarLarge.Opacity = 0;
-                    _eventCalendar.Opacity = 1;
-                    fadeIn(_trafficMap);
-                    fadeOut(_forecastWeather);
-                    fadeOut(_trafficMapBig);
-                    /*
-                     * if we want to add a sleep ability
-                    fadeOut(_quotes);
-                    fadeOut(_connectionImage);
-                    fadeOut(_osVersion);
-                    fadeOut(_ipAddress);
-                    fadeOut(_systemClock);
-                    fadeOut(_currentWeather);
-                    fadeOut(_eventCalendar);
-                    fadeOut(_trafficMap);
-                    fadeOut(_eventCalendarLarge);
-                    fadeOut(_forecastWeather); */
-                    break;
-                case 3:
-                    //display traffic
-                    _eventCalendarLarge.Opacity = 0;
-                    _eventCalendar.Opacity = 1;
-                    fadeIn(_trafficMapBig);
-                    fadeOut(_trafficMap);
-                    _forecastWeather.Opacity = 0;
-                    break;
-                case 4:
-                    //display twitter
-                    _eventCalendarLarge.Opacity = 0;
-                    _eventCalendar.Opacity = 1;
-                    fadeOut(_trafficMapBig);
-                    fadeIn(_trafficMap);
-                    _forecastWeather.Opacity = 0;
-                    break;
-                default:
-                    _eventCalendarLarge.Opacity = 0;
-                    _eventCalendar.Opacity = 1;
-                    _trafficMap.Opacity = 1;
-                    _forecastWeather.Opacity = 0;
-                    //all opacity set to 0, home displayed (index of 2)
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// opacity from 1 to 0 in 1 second
-        /// </summary>
-        /// <param name="displayItem"></param>
-        private void fadeOut(UIElement displayItem)
-        {
-            displayItem.Fade(value: 0.0f, duration: 1000, delay: 0, easingType: EasingType.Cubic).Start();
-        }
-
-        /// <summary>
-        /// opacity from 0 to 1 in 1 second
-        /// </summary>
-        /// <param name="displayItem"></param>
-        private void fadeIn(UIElement displayItem)
-        {
-            displayItem.Fade(value: 1.0f, duration: 1000, delay: 500, easingType: EasingType.Cubic).Start();
-        }
-
-        private void Page_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
-        {
-            if (e.Key == Windows.System.VirtualKey.L)
-            {
-                _eventCarouselControl.ScrollLeft();
-                CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
-            }
-            if (e.Key == Windows.System.VirtualKey.R)
-            {
-                _eventCarouselControl.ScrollRight();
-                CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
-            }
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
         }
 
         async void OnLoaded(object sender, RoutedEventArgs e)
@@ -214,9 +83,17 @@ namespace Mirror
             {
                 await loader.LoadAsync();
             }
+<<<<<<< HEAD
             await DoSearchAsync("@KState", 100);
+=======
 
-            
+            //setup gesture control variable fields
+            gestureDel = gestureHandler;
+            gc = new GestureControl(gestureDel);
+            //start gesture control
+            gc.ConnectAndListen_Arduino();
+
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
         }
 
         private static string GetTimeOfDayGreeting()
@@ -259,13 +136,16 @@ namespace Mirror
                     Geopoint AndersonHall = new Geopoint(bgp);
 
 
-                    // Set the map location. CHECK
+                    // Set the map location.
                     _trafficMap.Center = AndersonHall;
                     _trafficMap.LandmarksVisible = true;
-                    //_trafficMapBig.Center = myLocation;
-                    //_trafficMapBig.LandmarksVisible = true;
+<<<<<<< HEAD
+                    _trafficMapBig.Center = myLocation;
+                    _trafficMapBig.LandmarksVisible = true;
+=======
                     _trafficMap.Height = 450;
                     _trafficMap.Width = 350;
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
                     break;
 
                 case GeolocationAccessStatus.Denied:
@@ -277,18 +157,19 @@ namespace Mirror
                     break;
             }
 
+<<<<<<< HEAD
             _trafficMap.ZoomLevel = 13.55;
             _trafficMapBig.ZoomLevel = 14.65;
-            _trafficMap.ZoomLevel = 14;
             //FIX, System.TypeLoadException: 'Requested Windows Runtime type 'Windows.UI.Xaml.Controls.Maps.MapStyleSheet' is not registered.'
-            //_trafficMap.StyleSheet = MapStyleSheet.RoadDark();
-            //_trafficMapBig.StyleSheet = MapStyleSheet.RoadDark();
+=======
+            _trafficMap.ZoomLevel = 14;
+>>>>>>> 44121a25fef451009113be7224fb2eed76b5e782
+            _trafficMap.StyleSheet = MapStyleSheet.RoadDark();
+            _trafficMapBig.StyleSheet = MapStyleSheet.RoadDark();
         }
         #endregion
 
-        /// <summary>
-        /// Twitter
-        /// </summary>
+        #region Twitter
         private async Task DoSearchAsync(string query, byte count = 25)
         {
             //var response = await GetToken("[Get from twitter App area]", "[Get from twitter App area]");
@@ -347,9 +228,7 @@ namespace Mirror
             HtmlBindingHelper.SetTag(wvStream, Tweets.ToList<Tweet>());
         }
 
-        /// <summary>
-        /// Twitter
-        /// </summary>
+
         private string ParseForHtml(string message)
         {
             var ret = message;
@@ -383,17 +262,13 @@ namespace Mirror
             return ret;
         }
 
-        /// <summary>
-        /// Twitter
-        /// </summary>
+
         private string cleanString(string raw, string charToRemove)
         {
             return raw.Replace(charToRemove, "'");
         }
 
-        /// <summary>
-        /// Twitter
-        /// </summary>
+
         private void wvStream_ScriptNotify(object sender, NotifyEventArgs e)
         {
             var yes = e.Value;
@@ -414,20 +289,12 @@ namespace Mirror
 
         }
 
-        /// <summary>
-        /// Twitter
-        /// </summary>
         private void WvStream_LoadCompleted(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
 
         }
-
-        
     }
 
-    /// <summary>
-    /// Twitter -- Get this out of main
-    /// </summary>
     public class HtmlBindingHelper
     {
         //note: if this were ObservableCollection<tweet> it would not recieve updates as the collection is 
@@ -491,11 +358,42 @@ namespace Mirror
             }
 
         }
+
+        //this function is set up to run whenever a gesture is received from the gesture sensors
+        //more specifically it runs every time a serial message is received form the arduino
+        //implements a state machine that responds to input gestures
+        private void gestureHandler(GestureControl.GestureType gesture)
+        {
+            switch (gesture)
+            {
+                case GestureControl.GestureType.ZX_Right:
+                    _eventCarouselControl.ScrollRight();
+                    break;
+                case GestureControl.GestureType.ZX_Left:
+                    _eventCarouselControl.ScrollLeft();
+                    break;
+                case GestureControl.GestureType.ZX_Up:
+                    break;
+                case GestureControl.GestureType.DFR_Up:
+                    break;
+                case GestureControl.GestureType.DFR_Down:
+                    break;
+                case GestureControl.GestureType.DFR_Left:
+                    break;
+                case GestureControl.GestureType.DFR_Right:
+                    break;
+                case GestureControl.GestureType.DFR_CW:
+                    break;
+                case GestureControl.GestureType.DFR_CCW:
+                    break;
+                case GestureControl.GestureType.No_Gesture:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
-    /// <summary>
-    /// Twitter -- get out of main
-    /// </summary>
     public class Tweet
     {
         public string Name { get; set; }
@@ -506,7 +404,6 @@ namespace Mirror
         public string NameAt { get; set; }
 
     }
-
-
+    #endregion
 
 }

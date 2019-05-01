@@ -13,8 +13,8 @@
     <UserControl.Resources>
         <DataTemplate x:Key="photos">
             <Grid Background="Black" BorderBrush="Black" BorderThickness="1">
-                <Image Source="{Binding CItem}"  Width="100"
-                  Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <Image Source="{Binding CItem}"  Width="75"
+                  Height="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
