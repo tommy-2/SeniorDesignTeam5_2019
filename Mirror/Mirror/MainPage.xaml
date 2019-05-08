@@ -37,7 +37,9 @@
         </Image>
         <Custom:MapControl x:Name="_trafficMap" HorizontalAlignment="Right" VerticalAlignment="Top" Height="350" Width="350" Margin="0,500,10,0" TrafficFlowVisible="True"/>
         <Custom:MapControl x:Name="_trafficMapBig" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,125" Height="800" Width="642" Opacity="0" />
-        <WebView x:Name="wvStream" HorizontalAlignment="Right" Height="201" VerticalAlignment="Top" Width="345" Margin="0,250,0,0" 
+        <WebView x:Name="_wvStreamBig" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="318,75,318,0" Height="800" Width="642" Opacity="0" 
+                ScriptNotify="wvStream_ScriptNotify" LoadCompleted="WvStream_LoadCompleted" DefaultBackgroundColor="Transparent"/>
+        <WebView x:Name="_wvStreamSmall" HorizontalAlignment="Right" Height="201" VerticalAlignment="Top" Width="345" Margin="0,250,0,0" 
                  ScriptNotify="wvStream_ScriptNotify" LoadCompleted="WvStream_LoadCompleted" DefaultBackgroundColor="Transparent"/>
     </Grid>
 </Page>

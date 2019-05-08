@@ -53,6 +53,7 @@ namespace Mirror
         //gesture variable fields
         GestureControl.GestureOutputFunctionDelegate gestureDel;
         GestureControl gc;
+        DispatcherTimer _timer;
         #endregion
 
         public MainPage()
@@ -108,24 +109,30 @@ namespace Mirror
                 case 0:
                     //display calendar
                     fadeIn(_eventCalendarLarge);
+                    fadeIn(_wvStreamSmall);
                     fadeOut(_eventCalendar);
                     fadeOut(_trafficMap);
                     fadeOut(_forecastWeather);
+                    fadeOut(_wvStreamBig);
                     break;
                 case 1:
                     //display weather
                     fadeOut(_eventCalendarLarge);
+                    fadeOut(_wvStreamBig);
                     fadeIn(_eventCalendar);
                     fadeIn(_trafficMap);
                     fadeIn(_forecastWeather);
+                    fadeIn(_wvStreamSmall);
                     break;
                 case 2:
                     //display home
                     _eventCalendarLarge.Opacity = 0;
                     _eventCalendar.Opacity = 1;
                     fadeIn(_trafficMap);
+                    fadeIn(_wvStreamSmall);
                     fadeOut(_forecastWeather);
                     fadeOut(_trafficMapBig);
+                    fadeOut(_wvStreamBig);
                     /*
                      * if we want to add a sleep ability
                     fadeOut(_quotes);
@@ -144,22 +151,30 @@ namespace Mirror
                     _eventCalendarLarge.Opacity = 0;
                     _eventCalendar.Opacity = 1;
                     fadeIn(_trafficMapBig);
+                    fadeIn(_wvStreamSmall);
+                    fadeOut(_wvStreamBig);
                     fadeOut(_trafficMap);
                     _forecastWeather.Opacity = 0;
                     break;
                 case 4:
                     //display twitter
-                    _eventCalendarLarge.Opacity = 0;
-                    _eventCalendar.Opacity = 1;
-                    fadeOut(_trafficMapBig);
-                    fadeIn(_trafficMap);
-                    _forecastWeather.Opacity = 0;
+                    //_eventCalendarLarge.Opacity = 0;
+                    //_eventCalendar.Opacity = 1;
+                    //fadeOut(_trafficMapBig);
+                    //fadeIn(_trafficMap);
+                    //_forecastWeather.Opacity = 0;
+                    fadeOut(_trafficMap);
+                    fadeOut(_eventCalendarLarge);
+                    fadeOut(_wvStreamSmall);
+                    fadeIn(_wvStreamBig);
                     break;
                 default:
                     _eventCalendarLarge.Opacity = 0;
                     _eventCalendar.Opacity = 1;
                     _trafficMap.Opacity = 1;
                     _forecastWeather.Opacity = 0;
+                    _wvStreamBig.Opacity = 0;
+                    _wvStreamSmall.Opacity = 0;
                     //all opacity set to 0, home displayed (index of 2)
                     break;
             }
@@ -214,10 +229,15 @@ namespace Mirror
             {
                 await loader.LoadAsync();
             }
-            await DoSearchAsync("@KState", 100);
 
-            
+            //twitter stuff (timer to update twitta)
+            await DoSearchAsync("@KState", 100);
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(3600) };
+            _timer.Tick += OnTimerTick;
+            _timer.Start();
         }
+
+        async void OnTimerTick(object sender, object e) => await DoSearchAsync("@KState", 100);
 
         private static string GetTimeOfDayGreeting()
         {
@@ -296,16 +316,17 @@ namespace Mirror
             //var msg = response.Content;
 
             Tweets.Clear();
-            wvStream.NavigateToString("");
+            _wvStreamSmall.NavigateToString("");
+            _wvStreamBig.NavigateToString("");
 
             var auth = new SingleUserAuthorizer
             {
                 CredentialStore = new SingleUserInMemoryCredentialStore
                 {
-                    ConsumerKey = Instance.ConsumerKey,
-                    ConsumerSecret = Instance.ConsumerSecret,
-                    AccessToken = Instance.AccessToken,
-                    AccessTokenSecret = Instance.AccessTokenSecret
+                    ConsumerKey = "",
+                    ConsumerSecret = "",
+                    AccessToken = "",
+                    AccessTokenSecret = ""
                 }
             };
 
@@ -345,7 +366,8 @@ namespace Mirror
 
 
             //using binding to populate webview UI
-            HtmlBindingHelper.SetTag(wvStream, Tweets.ToList<Tweet>());
+            HtmlBindingHelper.SetTag(_wvStreamSmall, Tweets.ToList<Tweet>());
+            HtmlBindingHelper.SetTag(_wvStreamBig, Tweets.ToList<Tweet>());
         }
 
         /// <summary>
@@ -455,19 +477,37 @@ namespace Mirror
                 var tweets = (List<Tweet>)e.NewValue;
 
                 var htmlStream = "";
-                var htmlStyle = "<style text='text/css' > "
-                 + "body{ color:white;font-family:segoe ui, arial; font-size:11px;} "
-                 + ".tw{ min-height:10px;float:left; margin-bottom:10px;} "
-                 + ".tw .av{float:left;width:10px;margin-top:5px;} "
-                 + ".tw .twtxt{float:right; width:300px;margin-left:10px;} "
-                 + ".tw .u1{color:white;font-weight:bold;} "
-                 + ".tw .u2{color:grey;margin-left:10px;} "
-                 + ".tw .url1{color:blue;text-decoration:underline;cursor:pointer;} "
-                 + ".tw .at1{color:green;text-decoration:italic;cursor:pointer;} "
-                 + ".tw .hsh1{color:orange;text-decoration:italic;cursor:pointer;} "
-                 + ".annoying{opacity:0.3;} "
-                 + "</style>";
-
+                var htmlStyle = "";
+                if (wv.Name == "_wvStreamBig")
+                {
+                    htmlStyle = "<style text='text/css' > "
+                     + "body{ color:white;font-family:segoe ui, arial; font-size:13px;} "
+                     + ".tw{ min-height:10px;float:left; margin-bottom:10px;} "
+                     + ".tw .av{float:left;width:10px;margin-top:5px;} "
+                     + ".tw .twtxt{float:right; width:620px;margin-left:10px;} "
+                     + ".tw .u1{color:white;font-weight:bold;} "
+                     + ".tw .u2{color:grey;margin-left:10px;} "
+                     + ".tw .url1{color:blue;text-decoration:underline;cursor:pointer;} "
+                     + ".tw .at1{color:green;text-decoration:italic;cursor:pointer;} "
+                     + ".tw .hsh1{color:orange;text-decoration:italic;cursor:pointer;} "
+                     + ".annoying{opacity:0.3;} "
+                     + "</style>";
+                }
+                else
+                {
+                    htmlStyle = "<style text='text/css' > "
+                     + "body{ color:white;font-family:segoe ui, arial; font-size:11px;} "
+                     + ".tw{ min-height:10px;float:left; margin-bottom:10px;} "
+                     + ".tw .av{float:left;width:10px;margin-top:5px;} "
+                     + ".tw .twtxt{float:right; width:300px;margin-left:10px;} "
+                     + ".tw .u1{color:white;font-weight:bold;} "
+                     + ".tw .u2{color:grey;margin-left:10px;} "
+                     + ".tw .url1{color:blue;text-decoration:underline;cursor:pointer;} "
+                     + ".tw .at1{color:green;text-decoration:italic;cursor:pointer;} "
+                     + ".tw .hsh1{color:orange;text-decoration:italic;cursor:pointer;} "
+                     + ".annoying{opacity:0.3;} "
+                     + "</style>";
+                }
                 foreach (var tweet in tweets)
                 {
                     var specialCssClasses = "";
