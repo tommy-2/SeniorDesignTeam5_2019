@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="1200"
+    d:DesignHeight="100"
+    d:DesignWidth="1500"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded">
     <UserControl.Resources>
@@ -32,7 +32,7 @@
         </Storyboard>
     </UserControl.Resources>
     <StackPanel x:Name="_content">
-        <StackPanel Width="1000" Orientation="Horizontal" Margin="10">
+        <StackPanel Width="1500" Orientation="Horizontal" Margin="0">
             <TextBlock Text="{Binding Quote}" VerticalAlignment="Top" Grid.Row="2" FontSize="30" Name="txtScrolling">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="_scrollOnce" />

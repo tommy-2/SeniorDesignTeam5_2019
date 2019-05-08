@@ -45,6 +45,7 @@ namespace Mirror
             var explicitlyUtc = DateTime.SpecifyKind(utcNow, DateTimeKind.Utc);
 
             return explicitlyUtc.ToLocalTime();
+            //return DateTime.Now;
         }
     }
 }

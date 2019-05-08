@@ -17,19 +17,19 @@
         </Storyboard>
     </UserControl.Resources>
     <StackPanel x:Name="_forecastStackPanel" HorizontalAlignment="Center">
-        <Grid Width="642" Height="800">
-            <GridView ItemsSource="{Binding Days}" IsItemClickEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Width="800" Height="800">
+            <GridView ItemsSource="{Binding Days}" IsItemClickEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical" Width="70">
-                            <TextBlock Text="{Binding Day}" FontSize="16" FontWeight="Bold" Padding="0,0,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding Time}" FontSize="12" Padding="0,0,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <StackPanel Orientation="Vertical" Width="85">
+                            <TextBlock Text="{Binding Day}" FontSize="20" FontWeight="Bold" Padding="0,0,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Time}" FontSize="16" Padding="0,0,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <Border BorderBrush="White" BorderThickness="0,1,0,1" Padding="0,3">
-                                <TextBlock FontFamily="ms-appx:/Assets/meteocons.ttf#Meteocons" Text="{Binding Icon}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock FontFamily="ms-appx:/Assets/meteocons.ttf#Meteocons" Text="{Binding Icon}" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                             <TextBlock Text="{Binding Temp, 
                                               Converter={StaticResource StringFormatConverter}, 
-                                              ConverterParameter='\{0:#}°'}" FontSize="16" HorizontalAlignment="Center" />
+                                              ConverterParameter='\{0:#}°'}" FontSize="25"  HorizontalAlignment="Center" />
                             <Border BorderBrush="White" BorderThickness="0,0,0,3"/>
                         </StackPanel>
                     </DataTemplate>

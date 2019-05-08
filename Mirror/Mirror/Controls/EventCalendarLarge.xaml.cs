@@ -54,7 +54,7 @@ namespace Mirror
                 if (!calendars.IsNullOrEmpty() && calendars.All(calendar => calendar != Empty))
                 {
                     var view = ApplicationView.GetForCurrentView();
-                    var take = view.Orientation == ApplicationViewOrientation.Portrait ? 7 : 36;
+                    var take = view.Orientation == ApplicationViewOrientation.Portrait ? 7 : 28;
                     
 
                     var events =

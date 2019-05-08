@@ -72,11 +72,11 @@ namespace Mirror
             switch (gesture)
             {
                 case GestureControl.GestureType.ZX_Right:
-                    _eventCarouselControl.ScrollRight();
+                    _eventCarouselControl.ScrollLeft();
                     CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
                     break;
                 case GestureControl.GestureType.ZX_Left:
-                    _eventCarouselControl.ScrollLeft();
+                    _eventCarouselControl.ScrollRight();
                     CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
                     break;
                 case GestureControl.GestureType.ZX_Up:
@@ -262,8 +262,9 @@ namespace Mirror
                     // Set the map location. CHECK
                     _trafficMap.Center = AndersonHall;
                     _trafficMap.LandmarksVisible = true;
-                    //_trafficMapBig.Center = myLocation;
-                    //_trafficMapBig.LandmarksVisible = true;
+                    _trafficMapBig.Center = myLocation;
+
+                    _trafficMapBig.LandmarksVisible = true;
                     _trafficMap.Height = 450;
                     _trafficMap.Width = 350;
                     break;
@@ -301,10 +302,10 @@ namespace Mirror
             {
                 CredentialStore = new SingleUserInMemoryCredentialStore
                 {
-                    ConsumerKey = "",
-                    ConsumerSecret = "",
-                    AccessToken = "",
-                    AccessTokenSecret = ""
+                    ConsumerKey = Instance.ConsumerKey,
+                    ConsumerSecret = Instance.ConsumerSecret,
+                    AccessToken = Instance.AccessToken,
+                    AccessTokenSecret = Instance.AccessTokenSecret
                 }
             };
 

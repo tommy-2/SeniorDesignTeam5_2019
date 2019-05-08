@@ -65,7 +65,7 @@ namespace Mirror.Controls
             {
                 arduino = new SerialObject(GestureHandlerDel);//create SerialObject and pass in serial listener return funciton
                 await arduino.UpdateAttachedDevicesList(); //get a list of attached serial devices -- just for debug
-                await arduino.OpenSerialConnection("USB"); //connect to a attached serial device with USB in the device name
+                await arduino.OpenSerialConnection("USB Serial Device"); //connect to a attached serial device with USB in the device name
                 arduino.SetDefaultSerialConnectionSettings();//set standard baud rate (9600) and timeout
                 await arduino.StartSerialPortListener();//start listener
             }

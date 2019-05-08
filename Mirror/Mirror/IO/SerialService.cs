@@ -70,7 +70,7 @@ namespace Mirror.IO
             {
                 string aqs = SerialDevice.GetDeviceSelector();
                 var devices = await DeviceInformation.FindAllAsync(aqs); //get array of attached serial devices
-                var usbDevice = devices.FirstOrDefault(device => device.Name.ContainsIgnoringCase(name ?? "usb"));//search for device with given name or "usb" if name is null
+                var usbDevice = devices.FirstOrDefault(device => device.Name.ContainsIgnoringCase(name ?? "serial"));//search for device with given name or "serial" if name is null
                 serialPort = await SerialDevice.FromIdAsync(usbDevice.Id); //connect to device
 
             }

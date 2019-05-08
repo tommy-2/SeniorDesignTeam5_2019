@@ -17,6 +17,10 @@ namespace Mirror.Core
         public string OpenWeatherApiKey { get; private set; }
         public string WeatherUom { get; private set; }
         public string TrafficAPIKey { get; private set; }
+        public string ConsumerKey { get; private set; }
+        public string ConsumerSecret { get; private set; }
+        public string AccessToken { get; private set; }
+        public string AccessTokenSecret { get; private set; }
 
         public List<CalendarConfig> Calendars { get; private set; }
 
@@ -28,6 +32,10 @@ namespace Mirror.Core
             WeatherUom = resourceLoader.GetString(nameof(WeatherUom));
             Calendars = resourceLoader.GetString(nameof(Calendars)).Deserialize<List<CalendarConfig>>();
             TrafficAPIKey = resourceLoader.GetString(nameof(TrafficAPIKey));
+            ConsumerKey = resourceLoader.GetString(nameof(ConsumerKey));
+            ConsumerSecret = resourceLoader.GetString(nameof(ConsumerSecret));
+            AccessToken = resourceLoader.GetString(nameof(AccessToken));
+            AccessTokenSecret = resourceLoader.GetString(nameof(AccessTokenSecret));
         }
     }
     
