@@ -21,13 +21,13 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <StackPanel x:Name="_eventContainer" Orientation="Horizontal" HorizontalAlignment="Center" Opacity="0" Width="1160">
+    <StackPanel x:Name="_eventContainer" Orientation="Horizontal" HorizontalAlignment="Center" Opacity="0" Width="1300">
         <Grid HorizontalAlignment="Center">
-            <GridView ItemsSource="{Binding Events}" HorizontalAlignment="Center" Grid.ColumnSpan="3">
+            <GridView ItemsSource="{Binding Events}" HorizontalAlignment="Left" Grid.ColumnSpan="3">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource Fade}" HorizontalAlignment="Left" MinWidth="290" CornerRadius="0" Margin="0, 6">
-                            <StackPanel Orientation="Vertical" Padding="12" HorizontalAlignment="Left" Height="100">
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource Fade}" HorizontalAlignment="Left" Width="300" CornerRadius="0" Margin="0,6,0,0">
+                            <StackPanel Orientation="Vertical" Padding="0,12" HorizontalAlignment="Left" Height="100">
                                 <TextBlock Text="{Binding Day}" FontSize="22" />
                                 <TextBlock Text="{Binding Hours}" FontSize="16" />
                                 <TextBlock Text="{Binding Title}" FontSize="18" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
@@ -37,7 +37,7 @@
                 </GridView.ItemTemplate>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" MaxHeight="840">
+                        <ItemsWrapGrid MaximumRowsOrColumns="8" Orientation="Vertical" MaxHeight="920">
                         </ItemsWrapGrid>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>

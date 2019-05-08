@@ -90,6 +90,11 @@ namespace Mirror
             return (CarouselItem)MirrorCarousel.SelectedIndex;
         }
 
+        public void SetIndex(int index)
+        {
+                MirrorCarousel.SelectedIndex = index;
+        }
+
 
     }
 }

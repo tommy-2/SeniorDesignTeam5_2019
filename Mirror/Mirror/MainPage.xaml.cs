@@ -49,6 +49,7 @@ namespace Mirror
         
 
         public ObservableCollection<Tweet> Tweets { get; set; }
+        private bool _sleepMode = false;
 
         //gesture variable fields
         GestureControl.GestureOutputFunctionDelegate gestureDel;
@@ -70,6 +71,7 @@ namespace Mirror
 
         private void gestureHandler(GestureControl.GestureType gesture)
         {
+            if (_sleepMode && gesture != GestureControl.GestureType.ZX_Up) { return; }
             switch (gesture)
             {
                 case GestureControl.GestureType.ZX_Right:
@@ -81,18 +83,7 @@ namespace Mirror
                     CenterPageDisplay((int)_eventCarouselControl.GetSelectedItem());
                     break;
                 case GestureControl.GestureType.ZX_Up:
-                    break;
-                case GestureControl.GestureType.DFR_Up:
-                    break;
-                case GestureControl.GestureType.DFR_Down:
-                    break;
-                case GestureControl.GestureType.DFR_Left:
-                    break;
-                case GestureControl.GestureType.DFR_Right:
-                    break;
-                case GestureControl.GestureType.DFR_CW:
-                    break;
-                case GestureControl.GestureType.DFR_CCW:
+                    ToggleSleepMode();
                     break;
                 case GestureControl.GestureType.No_Gesture:
                     break;
@@ -111,18 +102,18 @@ namespace Mirror
                     fadeIn(_eventCalendarLarge);
                     fadeIn(_wvStreamSmall);
                     fadeOut(_eventCalendar);
-                    fadeOut(_trafficMap);
+                    //fadeOut(_trafficMap);
                     fadeOut(_forecastWeather);
                     fadeOut(_wvStreamBig);
                     break;
                 case 1:
                     //display weather
                     fadeOut(_eventCalendarLarge);
-                    fadeOut(_wvStreamBig);
                     fadeIn(_eventCalendar);
                     fadeIn(_trafficMap);
                     fadeIn(_forecastWeather);
                     fadeIn(_wvStreamSmall);
+                    fadeOut(_wvStreamBig);
                     break;
                 case 2:
                     //display home
@@ -133,18 +124,6 @@ namespace Mirror
                     fadeOut(_forecastWeather);
                     fadeOut(_trafficMapBig);
                     fadeOut(_wvStreamBig);
-                    /*
-                     * if we want to add a sleep ability
-                    fadeOut(_quotes);
-                    fadeOut(_connectionImage);
-                    fadeOut(_osVersion);
-                    fadeOut(_ipAddress);
-                    fadeOut(_systemClock);
-                    fadeOut(_currentWeather);
-                    fadeOut(_eventCalendar);
-                    fadeOut(_trafficMap);
-                    fadeOut(_eventCalendarLarge);
-                    fadeOut(_forecastWeather); */
                     break;
                 case 3:
                     //display traffic
@@ -158,12 +137,8 @@ namespace Mirror
                     break;
                 case 4:
                     //display twitter
-                    //_eventCalendarLarge.Opacity = 0;
-                    //_eventCalendar.Opacity = 1;
-                    //fadeOut(_trafficMapBig);
-                    //fadeIn(_trafficMap);
-                    //_forecastWeather.Opacity = 0;
-                    fadeOut(_trafficMap);
+                    fadeOut(_trafficMapBig);
+                    fadeIn(_trafficMap);
                     fadeOut(_eventCalendarLarge);
                     fadeOut(_wvStreamSmall);
                     fadeIn(_wvStreamBig);
@@ -178,6 +153,46 @@ namespace Mirror
                     //all opacity set to 0, home displayed (index of 2)
                     break;
             }
+        }
+
+        /// <summary>
+        /// fades out screen and only responds to wake gesture
+        /// </summary>
+        private void ToggleSleepMode()
+        {
+            if (_sleepMode == false)
+            {   
+                //fade out everything but the time
+                _sleepMode = true;
+                fadeOut(_quotes);
+                fadeOut(_eventCarouselControl);
+                fadeOut(_connectionImage);
+                fadeOut(_ipAddress);
+                fadeOut(_currentWeather);
+                fadeOut(_forecastWeather);
+                fadeOut(_eventCalendar);
+                fadeOut(_eventCalendarLarge);
+                fadeOut(_trafficMap);
+                fadeOut(_trafficMapBig);
+                fadeOut(_wvStreamSmall);
+                fadeOut(_wvStreamBig);
+            }
+            else
+            {
+                //home page items
+                _eventCarouselControl.SetIndex(2);
+                fadeIn(_eventCarouselControl);
+                fadeIn(_quotes);
+                fadeIn(_eventCalendar);
+                fadeIn(_currentWeather);
+                fadeIn(_wvStreamSmall);
+                fadeIn(_trafficMap);
+                fadeIn(_ipAddress);
+                fadeIn(_connectionImage);
+                _sleepMode = false;
+            }
+            
+           
         }
 
         /// <summary>
@@ -286,7 +301,7 @@ namespace Mirror
 
                     _trafficMapBig.LandmarksVisible = true;
                     _trafficMap.Height = 450;
-                    _trafficMap.Width = 350;
+                    _trafficMap.Width = 310;
                     break;
 
                 case GeolocationAccessStatus.Denied:
@@ -323,10 +338,10 @@ namespace Mirror
             {
                 CredentialStore = new SingleUserInMemoryCredentialStore
                 {
-                    ConsumerKey = "",
-                    ConsumerSecret = "",
-                    AccessToken = "",
-                    AccessTokenSecret = ""
+                    ConsumerKey = Instance.ConsumerKey,
+                    ConsumerSecret = Instance.ConsumerSecret,
+                    AccessToken = Instance.AccessToken,
+                    AccessTokenSecret = Instance.AccessTokenSecret
                 }
             };
 
